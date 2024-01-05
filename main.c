@@ -35,14 +35,21 @@ void	add_str(String *dest, char *src)
 	if (*dest == NULL)
 		*dest = malloc(1);
 	len_src = fstrlen(src);
-	printf("%ld\n", len_src);
+	if (len_src > 0)
+		str_realloc(dest, src, len_src);
 	pfree(*dest);
+}
+
+void	norm_str(String *dest, char *src)
+{
+	*dest = NULL;
+	add_str(dest, src);
 }
 
 int	main(void) {
 	String	msg;
 
-	add_str(&msg, "gnl");
+	norm_str(&msg, "gnl");
 	pfree(NULL);
 	return (0);
 }

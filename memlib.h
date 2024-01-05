@@ -26,10 +26,7 @@ void	freelist(sfree **flist);
 void	backnode(sfree **list, sfree *new);
 
 /*
-init() = add_str(dest, "");
 
-len();
-add_str;
 add_end;
 add_right; (to an index)
 add_left; (to an index)
