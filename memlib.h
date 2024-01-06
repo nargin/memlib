@@ -18,10 +18,12 @@ typedef struct sfree {
 
 /* UTILS FUNCTION */
 void	exitation(int errorcode);
-size_t	fstrlen(char *s);
+size_t	fstrlen(const char *s);
+void	str_realloc(String *dest, const char *src, size_t len_src);
+char	*fstrdup(const char *src);
 
 /* STRUCT FUNCTION */
-sfree *newnode(void *ptr);
+sfree 	*newnode(void *ptr);
 void	freelist(sfree **flist);
 void	backnode(sfree **list, sfree *new);
 

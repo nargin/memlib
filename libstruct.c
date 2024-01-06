@@ -11,16 +11,6 @@ void	exitation(int errorcode)
 		);
 }
 
-size_t	fstrlen(char *s)
-{
-	char	*t;
-
-	t = s;
-	while (*s)
-		s++;
-	return (s - t);
-}
-
 sfree	*newnode(void *ptr)
 {
 	sfree	*node;
@@ -53,6 +43,8 @@ void	freelist(sfree **flist)
 		return ;
 	while (*flist)
 	{
+		if ((*flist)->ptr)
+			free((*flist)->ptr);
 		tp = (*flist);
 		(*flist) = (*flist)->next;
 		free(tp);

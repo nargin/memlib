@@ -9,20 +9,30 @@ void	display_list(sfree *list)
 		printf("%d: %p\n", i, tmp->ptr);
 }
 
+int	containe(struct sfree *container, void *ptr)
+{
+	while (container)
+	{
+		if (container->ptr == ptr)
+			return (1);
+		container = container->next;
+	}
+	return (0);
+}
+
 int	pfree(void	*ptr)
 {
 	static struct sfree	*list;
-
+	
 	if (list == NULL && ptr == NULL)
 		return (-1);
-	if (list == NULL && ptr != NULL)
+	else if (list == NULL && ptr != NULL)
 		list = newnode(ptr);
-	else if (ptr != NULL)
+	else if (ptr != NULL && containe(list, ptr) == false)
 		backnode(&list, newnode(ptr));
-	if (ptr == NULL)
+	else if (ptr == NULL)
 	{
 		display_list(list);
-		// TODO : freecontent -> free all String;
 		freelist(&list);
 	}
 	return (0);
@@ -33,7 +43,7 @@ void	add_str(String *dest, char *src)
 	size_t	len_src;
 
 	if (*dest == NULL)
-		*dest = malloc(1);
+		*dest = fstrdup("");
 	len_src = fstrlen(src);
 	if (len_src > 0)
 		str_realloc(dest, src, len_src);
@@ -49,7 +59,11 @@ void	norm_str(String *dest, char *src)
 int	main(void) {
 	String	msg;
 
-	norm_str(&msg, "gnl");
+	msg = NULL;
+	add_str(&msg, "gnl");
+	printf("%s\n", msg);
+	add_str(&msg, "hihi");
+	printf("%s\n", msg);
 	pfree(NULL);
 	return (0);
 }
