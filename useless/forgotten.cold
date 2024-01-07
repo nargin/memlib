@@ -1,0 +1,43 @@
+#include "memlib.h"
+
+void	display_list(sfree *list)
+{
+	int	i;
+
+	i = 0;
+	for (sfree *tmp = list; tmp; tmp = tmp->next, i++)
+		printf("%d: %p\n", i, tmp->ptr);
+}
+
+int	containe(struct sfree *container, void *ptr)
+{
+	while (container)
+	{
+		if (container->ptr == ptr)
+			return (1);
+		container = container->next;
+	}
+	return (0);
+}
+
+int	pfree(void	*ptr)
+{
+	static struct sfree	*list;
+	
+	if (list == NULL && ptr == NULL)
+		return (-1);
+	// else if (list == NULL && ptr != NULL)
+		// list = newnode(ptr);
+	// else if (ptr != NULL && containe(list, ptr) == false)
+		// backnode(&list, newnode(ptr));
+	else if (ptr == NULL)
+	{
+		// display_list(list);
+		// freelist(&list);
+	}
+	// else if (containe(list, ptr))
+	// {
+		// delnode(&list, ptr);
+	// }
+	return (0);
+}

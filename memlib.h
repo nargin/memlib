@@ -8,36 +8,37 @@
 
 typedef char *String;
 
+typedef int bool;
+
+#define szch sizeof(char)
+
 #define true 1
 #define false 0
+
+#define SUCCESS 0
+#define ERROR -1
 
 typedef struct sfree {
 	void	*ptr;
 	struct sfree *next;
-} sfree;
+}	sfree;
 
-/* UTILS FUNCTION */
-void	exitation(int errorcode);
+/* UTILS FUNCTION: str_utils.c */
 size_t	fstrlen(const char *s);
-void	str_realloc(String *dest, const char *src, size_t len_src);
 char	*fstrdup(const char *src);
+void	*fmemset(void *src, int value, size_t count);
+void	*fmemcpy(void *dest, const void *src, size_t len);
+int		strrealloc(String *d, size_t len_dest, size_t size);
 
-/* STRUCT FUNCTION */
-sfree 	*newnode(void *ptr);
-void	freelist(sfree **flist);
-void	backnode(sfree **list, sfree *new);
+/* String manipulation: libstring.c */
+int		add_end(String *dest, const char *src);
+int		add_start(String *dest, const char *src);
+int		add_left(String *dest, const char *src, size_t index);
+int		add_right(String *dest, const char *src, size_t index);
+// trim(char *); (default whitespace)
 
-/*
-
-add_end;
-add_right; (to an index)
-add_left; (to an index)
-add_start;
-trim(char *); (default whitespace)
-*/
-
-// size_t	slen(String sptr);
-// void	*salloc(size_t	toalloc);
-// void	mfree(...);
+/* Basic string function: libutils.c */
+int		add_str(String *dest, const char *src);
+int		null_str(String *dest, const char *src);
 
 #endif
