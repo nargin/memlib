@@ -1,12 +1,12 @@
 #include "memlib.h"
+// String func;
 
-int	main(void)
-{
-	String	msg;
+// memory lib soon..;
 
-	null_str(&msg, "hihi");
-	add_left(&msg, "parsing", 6);
-	printf("%ld: %s\n", fstrlen(msg), msg);
-	free(msg);
+int	main(void) {
+	char	*c = malloc(0); // struct block leak;
+	(void)c;
+
+	infite_malloc();
 	return (0);
 }

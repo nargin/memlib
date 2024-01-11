@@ -2,6 +2,7 @@
 #define __MEMLIB__
 
 #include <sys/mman.h>
+#include <sys/resource.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,10 +19,18 @@ typedef int bool;
 #define SUCCESS 0
 #define ERROR -1
 
-typedef struct sfree {
-	void	*ptr;
-	struct sfree *next;
-}	sfree;
+// typedef struct sfree {
+// 	void	*ptr;
+// 	struct sfree *next;
+// }	sfree;
+
+
+
+#ifdef INTERCEPT
+	#define malloc(xs) infite_malloc(xs)
+#endif
+
+void	infite_malloc(void);
 
 /* UTILS FUNCTION: str_utils.c */
 size_t	fstrlen(const char *s);
